@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Dashboard</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Task Dashboard</h2>
+
+<a href="/logout" class="logout">
+Logout
+</a>
+
+<form action="/add" method="POST">
+
+<input
+type="text"
+name="title"
+placeholder="Task Title"
+required>
+
+<textarea
+name="description"
+placeholder="Description">
+</textarea>
+
+<button>
+Add Task
+</button>
+
+</form>
+
+<hr>
+
+<table>
+
+<tr>
+
+<th>Title</th>
+
+<th>Description</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+{% for task in tasks %}
+
+<tr>
+
+<td>{{task[1]}}</td>
+
+<td>{{task[2]}}</td>
+
+<td>{{task[3]}}</td>
+
+<td>
+
+<a href="/complete/{{task[0]}}">
+
+Complete
+
+</a>
+
+|
+
+<a href="/delete/{{task[0]}}">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+
+</html>
